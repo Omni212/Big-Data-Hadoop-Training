@@ -33,7 +33,7 @@ Upload it to HDFS
 
 ```
 hdfs dfs -mkdir /user/ssh
-hdfs dfs -copyFrom 5000-8.txt /user/ssh
+hdfs dfs -copyFromLocal 5000-8.txt /user/ssh
 ```
 
 Run the Map reduce job [ Azure HDInsight ]
