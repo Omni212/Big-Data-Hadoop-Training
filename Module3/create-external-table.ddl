@@ -12,4 +12,4 @@ CREATE EXTERNAL TABLE IF NOT EXISTS Cars(
     ROW FORMAT DELIMITED
     FIELDS TERMINATED BY ','
     STORED AS TEXTFILE
-    location '/user/sshuser/visdata';
+    location '/user/hive/cars';
