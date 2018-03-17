@@ -72,8 +72,3 @@ if __name__ == "__main__":
         print("%s: %i" % (word, count))
 
     spark.stop()
-
-./bin/spark-submit examples/src/main/python/pi.py
-
-
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster test.py 10
