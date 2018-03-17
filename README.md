@@ -89,6 +89,15 @@ Save the RDD into File
 ```
 counts.saveAsTextFile("/user/sshuser/output")
 ```
+Output will be stored in the directory
+
+```
+hdfs dfs -ls /user/sshuser/output
+Found 3 items
+-rw-r--r--   1 sshuser supergroup          0 2018-03-17 16:08 /user/sshuser/output/_SUCCESS
+-rw-r--r--   1 sshuser supergroup     270851 2018-03-17 16:08 /user/sshuser/output/part-00000
+-rw-r--r--   1 sshuser supergroup     269236 2018-03-17 16:08 /user/sshuser/output/part-00001
+```
 
 ## Spark SQL Example
 
