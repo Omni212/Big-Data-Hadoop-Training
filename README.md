@@ -102,7 +102,7 @@ df1.show()
 Load Databrick CSV parsing library/module
 
 ```
-df = sqlContext.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load('/users/sshuser/cars.csv')
+df = sqlContext.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load('/user/sshuser/cars.csv')
 df.show()
 df.printSchema()
 df.select("mpg").show()
