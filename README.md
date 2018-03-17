@@ -1,4 +1,4 @@
-## Sample and Practice code from the training session
+# Sample and Practice code from the training session
 
 
 # Environment setup 
@@ -54,11 +54,11 @@ Run the MapReduce job [ Cloudera Sandbox ]
 hadoop jar /usr/lib/hadoop-0.20-mapreduce/contrib/streaming/hadoop-streaming-2.6.0-mr1-cdh5.12.0.jar -file /home/cloudera/mapper.py    -mapper /home/cloudera/mapper.py -file /home/cloudera/reducer.py   -reducer /home/cloudera/reducer.py -input /user/cloudera/*.py -output /user/cloudera/output
 ```
 
-## Instructions for Module 5 - Spark 
+# Instructions for Module 5 - Spark 
 
-# WordCount Spark Example:
+### WordCount Spark Example:
 
-# Upload a large file into HDFS
+Upload a large file into HDFS
 
 ```
 wget http://www.gutenberg.org/files/5000/5000-8.txt
@@ -66,25 +66,25 @@ hdfs dfs -mkdir /user/sshuser
 hdfs dfs -copyFromLocal 5000-8.txt /user/sshuser
 ```
 
-# Start pyspark interactive session
+Start pyspark interactive session
 
 ```
 pyspark
 ```
 
-# Initialize the Spark Context
+Initialize the Spark Context
 
 ```
 text_file = sc.textFile("/user/sshuser/5000-8.txt")
 ```
 
-# Create flatmap variable
+Create flatmap variable
 
 ```
 counts = text_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
 ```
 
-# Save the RDD into File
+Save the RDD into File
 
 ```
 counts.saveAsTextFile("/user/sshuser/output")
@@ -93,14 +93,13 @@ counts.saveAsTextFile("/user/sshuser/output")
 ## Spark SQL Example
 
 
-
 ```
 pyspark --packages com.databricks:spark-csv_2.10:1.4.0
 df1 = sqlContext.sql("SELECT * FROM default.hivesampletable")
 df1.show()
 ```
 
-# Load Databrick CSV parsing library/module
+Load Databrick CSV parsing library/module
 
 ```
 df = sqlContext.read.format('com.databricks.spark.csv').options(header='true', inferschema='true').load('/users/sshuser/cars.csv')
@@ -112,7 +111,7 @@ df.filter(df['mpg'] > 9).show()
 df.groupBy("_c0").count().show()
 ```
 
-# HomeWork:
+## HomeWork:
 
 1. Take a large text file 10 GB, and run the word count program and compare the performance between MapReduce and Spark
 2. Take a CSV file create hive table out of it, compare performance between SparkSQL and Hive queries
