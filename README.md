@@ -125,3 +125,12 @@ df.groupBy("_c0").count().show()
 1. Take a large text file 10 GB, and run the word count program and compare the performance between MapReduce and Spark
 2. Take a CSV file create hive table out of it, compare performance between SparkSQL and Hive queries
 
+# Module 6 
+
+## Pig Examples
+
+Download the data set
+
+wget https://raw.githubusercontent.com/hortonworks/data-tutorials/master/tutorials/hdp/beginners-guide-to-apache-pig/assets/driver_data.zip
+
+Unzip and upload it to HDFS
