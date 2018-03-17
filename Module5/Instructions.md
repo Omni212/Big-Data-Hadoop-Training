@@ -1,16 +1,19 @@
 
-#WordCount Spark Example:
+##WordCount Spark Example:
 
 #Upload a large file into HDFS
 
+```
 wget http://www.gutenberg.org/files/5000/5000-8.txt
 hdfs dfs -mkdir /user/sshuser
 hdfs dfs -copyFromLocal 5000-8.txt /user/sshuser
+```
 
-Start pyspark interactive session
+#Start pyspark interactive session
 
+```
 pyspark
-
+```
 Initialize the Spark Context
 
 text_file = sc.textFile("/user/sshuser/5000-8.txt")
