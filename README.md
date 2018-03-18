@@ -148,19 +148,19 @@ Data Definition language commands in Hbase shell
 hbase>create 'driver_dangerous_event','events'
 hbase>list
 ```
-Download the sample data file
+Download the sample data file -- Run it on Linux Prompt
 
 ```
 curl -o ~/data.csv https://raw.githubusercontent.com/hortonworks/data-tutorials/d0468e45ad38b7405570e250a39cf998def5af0f/tutorials/hdp/hdp-2.5/introduction-to-apache-hbase-concepts-apache-phoenix-and-new-backup-restore-utility-in-hbase/assets/data.csv
 
 hdfs dfs -put ~/data.csv /tmp
 ```
-Load the CSV file into Hbase
+Load the CSV file into Hbase -- Run it on Linux Prompt
 
 ```
 hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=,  -Dimporttsv.columns="HBASE_ROW_KEY,events:driverId,events:driverName,events:eventTime,events:eventType,events:latitudeColumn,events:longitudeColumn,events:routeId,events:routeName,events:truckId" driver_dangerous_event hdfs://sandbox-hdp.hortonworks.com:/tmp/data.csv
 ```
-Scan the table 
+Scan the table -- Run it on Hbase shell
 
 ```
 scan 'driver_dangerous_event'
