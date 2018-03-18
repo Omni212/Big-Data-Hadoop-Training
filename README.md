@@ -134,3 +134,59 @@ Download the data set
 wget https://raw.githubusercontent.com/hortonworks/data-tutorials/master/tutorials/hdp/beginners-guide-to-apache-pig/assets/driver_data.zip
 
 Unzip and upload it to HDFS
+
+## Hbase Examples
+
+Switch to hbase user
+```
+su - hbase
+hbase shell
+```
+Data Definition language commands in Hbase shell
+
+```
+hbase>create 'driver_dangerous_event','events'
+hbase>list
+```
+Download the sample data file
+
+```
+curl -o ~/data.csv https://raw.githubusercontent.com/hortonworks/data-tutorials/d0468e45ad38b7405570e250a39cf998def5af0f/tutorials/hdp/hdp-2.5/introduction-to-apache-hbase-concepts-apache-phoenix-and-new-backup-restore-utility-in-hbase/assets/data.csv
+
+hdfs dfs -put ~/data.csv /tmp
+```
+Load the CSV file into Hbase
+
+```
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=,  -Dimporttsv.columns="HBASE_ROW_KEY,events:driverId,events:driverName,events:eventTime,events:eventType,events:latitudeColumn,events:longitudeColumn,events:routeId,events:routeName,events:truckId" driver_dangerous_event hdfs://sandbox-hdp.hortonworks.com:/tmp/data.csv
+```
+Scan the table 
+
+```
+scan 'driver_dangerous_event'
+```
+Insert Commands for hbase
+
+put '<table_name>','row1','<column_family:column_name>','value'
+
+```
+put 'driver_dangerous_event','4','events:driverId','78'
+put 'driver_dangerous_event','4','events:driverName','Carl'
+put 'driver_dangerous_event','4','events:eventTime','2016-09-23 03:25:03.567'
+put 'driver_dangerous_event','4','events:eventType','Normal'
+put 'driver_dangerous_event','4','events:latitudeColumn','37.484938'
+put 'driver_dangerous_event','4','events:longitudeColumn','-119.966284'
+put 'driver_dangerous_event','4','events:routeId','845'
+put 'driver_dangerous_event','4','events:routeName','Santa Clara to San Diego'
+put 'driver_dangerous_event','4','events:truckId','637'
+```
+
+Select/Get Commands
+get '<table_name>','<row_number>'
+get 'table_name', 'row_number', {COLUMN ⇒ 'column_family:column-name '}
+
+```
+get 'driver_dangerous_event','1',{COLUMN => 'events:driverName'}
+get 'driver_dangerous_event','1',{COLUMNS => ['events:driverName','events:routeId']}
+```
+
