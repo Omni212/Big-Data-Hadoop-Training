@@ -189,4 +189,6 @@ get 'table_name', 'row_number', {COLUMN ⇒ 'column_family:column-name '}
 get 'driver_dangerous_event','1',{COLUMN => 'events:driverName'}
 get 'driver_dangerous_event','1',{COLUMNS => ['events:driverName','events:routeId']}
 ```
+## Home work
+1. Try pig and hbase examples using car.csv data file
 
