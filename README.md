@@ -223,6 +223,9 @@ edit the file /etc/mysql/mysql.conf.d/mysqld.cnf and modify the bind-address to 
 ```
 bind-address            = 0.0.0.0
 ```
+```
+sudo cp my.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+```
 
 Restart Mysql
 ```
