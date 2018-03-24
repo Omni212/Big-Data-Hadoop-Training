@@ -192,3 +192,73 @@ get 'driver_dangerous_event','1',{COLUMNS => ['events:driverName','events:routeI
 ## Home work
 1. Try pig and hbase examples using car.csv data file
 
+
+# Module 7
+
+## Sqoop Tutorial
+
+Download Mysql java connector from 
+
+https://dev.mysql.com/downloads/connector/j/
+
+Extract and copy the bin.jar to
+
+```
+sudo cp mysql-connector-java-5.1.46-bin.jar /usr/hdp/current/sqoop-client/lib/
+
+```
+
+Install MySQL on Azure Ubuntu box
+
+```
+sudo apt install mysql-server
+```
+
+It will prompt to choose mysql root password put test
+
+Now you need to modify mysql to run on all ports so that MR jobs can access it from any node.
+
+edit the file /etc/mysql/mysql.conf.d/mysqld.cnf and modify the bind-address to 0.0.0.0
+
+```
+bind-address            = 0.0.0.0
+```
+
+Restart Mysql
+```
+sudo /etc/init.d/mysql restart
+```
+
+Now login to mysql and grant priviledges
+
+```
+mysql -uroot -ptest
+
+GRANT ALL ON *.* to root@'%' IDENTIFIED BY 'test'; 
+GRANT ALL ON *.* to root@'localhost' IDENTIFIED BY 'test'; 
+```
+
+Make sure you can login to mysql using -h parameter example
+
+```
+mysql -h10.0.0.18 -uroot -ptest
+```
+
+Now clone the sample data from github
+
+```
+git clone https://github.com/datacharmer/test_db.git
+```
+
+Load the data into DB
+
+```
+cd test_db
+mysql -uroot -ptest < employees.sql
+```
+
+Run ingest this data into Hive
+
+```
+sqoop import --connect jdbc:mysql://hn0-omni21.w3rnsdgdzaie1pas2ohmnw4jfd.cx.internal.cloudapp.net:3306/employees --username root -P --split-by emp_no --columns emp_no,first_name --table employees  --target-dir /user/sshuser/sq2 --fields-terminated-by "," --hive-import --create-hive-table --hive-table default.employee
+```
